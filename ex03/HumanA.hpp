@@ -1,38 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.hpp                                         :+:      :+:    :+:   */
+/*   HumanA.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mstrauss <mstrauss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/23 12:13:21 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/09/23 13:14:03 by mstrauss         ###   ########.fr       */
+/*   Created: 2024/09/23 14:13:31 by mstrauss          #+#    #+#             */
+/*   Updated: 2024/09/23 14:57:18 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ZOMBIE_HPP
-#define ZOMBIE_HPP
+#ifndef HUMANA_HPP
+#define HUMANA_HPP
 
-#include <iostream>
 #include <string>
+#include <iostream>
 
-class Zombie
+#include "Weapon.hpp"
+
+// HumanA TAKES a Weapon in the constructor
+class HumanA
 {
 public:
-	Zombie(std::string name);
-	~Zombie();
-
-	void announce(void);
-
-	std::string getName(void);
-
-	void setName(std::string name);
+	HumanA(std::string name, Weapon &weapon);
+	~HumanA();
+	void attack();
+	Weapon *getWeapon();
 
 private:
 	std::string _name;
+	Weapon &_weapon;
 };
-
-Zombie *newZombie(std::string name);
-void randomChump(std::string name);
 
 #endif
