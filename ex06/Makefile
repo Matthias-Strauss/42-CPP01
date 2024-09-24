@@ -6,19 +6,22 @@
 #    By: mstrauss <mstrauss@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/19 17:41:48 by mstrauss          #+#    #+#              #
-#    Updated: 2024/09/23 15:48:28 by mstrauss         ###   ########.fr        #
+#    Updated: 2024/09/24 15:12:22 by mstrauss         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	sifl
+NAME		=	harlFilter
 
 CC			=	c++
-CFLAGS		=	-Wall -Werror -Wextra -std=c++98 -stdlib=libc++
+CFLAGS		=	-Wall -Werror -Wextra -std=c++17 -stdlib=libc++
 INC			=   -I$(CURDIR)
 
 vpath %.hpp includes
-SRC 		=	main.cpp \
-				tests.cpp
+
+SRC 		=	main.cpp\
+				harl.cpp
+				
+HEADER		=	harl.hpp 
 
 OBJ_DIR		=	./obj
 OBJ 		= $(addprefix $(OBJ_DIR)/, $(SRC:.cpp=.o))
