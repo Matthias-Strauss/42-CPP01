@@ -6,37 +6,38 @@
 /*   By: mstrauss <mstrauss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 12:12:56 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/09/23 13:26:04 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/09/29 19:09:41 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
-void announce(void)
+void Zombie::announce(void)
 {
 	std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
+/* ------------------------------- Constructor ------------------------------ */
 Zombie::Zombie(std::string name)
 {
 	this->setName(name);
 	std::cout << "Zombie " << name << " created" << std::endl;
 }
 
+/* ------------------------------- Destructor ------------------------------- */
 Zombie::~Zombie()
 {
-	delete this;
 	std::cout << "Zombie " << this->getName() << " destroyed" << std::endl;
 }
 
-Zombie *newZombie(std::string name)
+/* --------------------------------- Setters -------------------------------- */
+void Zombie::setName(std::string name)
 {
-	Zombie *zombie = new Zombie(name);
-	return (zombie);
+	this->_name = name;
 }
 
-void randomChump(std::string name)
+/* --------------------------------- Getters -------------------------------- */
+std::string Zombie::getName(void)
 {
-	Zombie zombie = Zombie(name);
-	zombie.announce();
+	return (this->_name);
 }
