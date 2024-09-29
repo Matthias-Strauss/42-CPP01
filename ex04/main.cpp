@@ -6,11 +6,24 @@
 /*   By: mstrauss <mstrauss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 15:17:30 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/09/23 15:47:35 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/09/29 21:06:12 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "sifl.hpp"
+
+std::string replace(std::string fileContent, std::string s1, std::string s2)
+{
+	size_t position;
+	position = fileContent.find(s1);
+	while ((position = fileContent.find(s1, position)) != std::string::npos)
+	{
+		fileContent.erase(position, s1.length());
+		fileContent.insert(position, s2);
+		position += s2.length();
+	}
+	return fileContent;
+}
 
 int main(int ac, char **av)
 {
@@ -32,22 +45,19 @@ int main(int ac, char **av)
 	// File opening error handling
 	if (!inputFile.is_open())
 	{
-		std::cerr << "Error: file coul not be opened" << std::endl;
+		std::cerr << "Error: file could not be opened" << std::endl;
 		return 1;
 	}
 
 	// Copy file content to string
 	std::string fileContent((std::istreambuf_iterator<char>(inputFile)), std::istreambuf_iterator<char>());
 
-	// Replace s1 with s2
-	size_t position;
-	position = fileContent.find(s1);
-	while ((position = fileContent.find(s1, position)) != std::string::npos)
+	if (fileContent.empty())
 	{
-		fileContent.erase(position, s1.length());
-		fileContent.insert(position, s2);
-		position += s2.length();
+		std::cerr << "Error: file is empty" << std::endl;
+		return 1;
 	}
+	fileContent = replace(fileContent, s1, s2);
 
 	// Create output file
 	std::ofstream outputFile(fileName + ".replace");
