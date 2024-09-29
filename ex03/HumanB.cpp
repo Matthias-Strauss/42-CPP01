@@ -6,18 +6,21 @@
 /*   By: mstrauss <mstrauss@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/23 14:39:54 by mstrauss          #+#    #+#             */
-/*   Updated: 2024/09/23 15:06:51 by mstrauss         ###   ########.fr       */
+/*   Updated: 2024/09/29 20:43:16 by mstrauss         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name) : _name(name), _weapon(nullptr)
+HumanB::HumanB(std::string name) : _name(name)
 {
+	this->_weapon = NULL;
+	std::cout << "HumanB named " << name << " created using parameterized constructor" << std::endl;
 }
 
 HumanB::~HumanB()
 {
+	std::cout << "HumanB named " << this->_name << " destroyed" << std::endl;
 }
 
 std::string HumanB::getWeaponType()
@@ -35,5 +38,8 @@ void HumanB::setWeapon(Weapon &weapon)
 
 void HumanB::attack()
 {
-	std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
+	if (!this->_weapon)
+		std::cout << this->_name << " attacks with their bare hands. What a stud!" << std::endl;
+	else
+		std::cout << this->_name << " attacks with their " << this->_weapon->getType() << std::endl;
 }
